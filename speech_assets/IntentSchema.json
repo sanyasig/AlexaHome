@@ -1,0 +1,32 @@
+  {
+    "intents": [
+      {
+        "intent": "HelloWorldIntent"
+      },
+      {
+        "intent": "AMAZON.HelpIntent"
+      },
+      {
+        "intent": "PCOFF"
+      },
+      {
+        "intent": "PAUSE"
+      },
+      {
+        "intent": "PLAY"
+      },
+      {
+      "intent": "FIREAPPP",
+      "slots": [
+        {
+          "name": "App",
+          "type": "FireStick_App"
+        },
+        {
+          "name": "Action",
+          "type": "App_Action"
+        }
+      ]
+      }
+    ]
+  }
