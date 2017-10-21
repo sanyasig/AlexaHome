@@ -54,16 +54,18 @@ def shutdown_PC():
     speech_text = 'ok'
     return statement(speech_text).simple_card('PLAY', speech_text)
 
-
 @ask.intent('PAUSE')
 def shutdown_PC():
     messaseManager.send("home/adb", "pause")
     speech_text = 'ok'
     return statement(speech_text).simple_card('PAUSE', speech_text)
 
-
-
-
+@ask.intent('MOVIE', convert={'GetMovie': str})
+def getMovie(GetMovie):
+    print ("MESAGE FROM ALEXA HOME")
+    print("*******" + GetMovie  + "**********")
+    speech_text = 'Ading title ' + GetMovie + "to transmissions"
+    return statement(speech_text).simple_card('PCOFF', speech_text)
 
 @ask.session_ended
 def session_ended():

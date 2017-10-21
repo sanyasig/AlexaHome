@@ -16,7 +16,12 @@
         "intent": "PLAY"
       },
       {
-      "intent": "FIREAPPP",
+        "intent": "MOVIE"
+      },
+      {
+        "intent": "FIREAPPP"
+      },
+      {
       "slots": [
         {
           "name": "App",
@@ -25,6 +30,10 @@
         {
           "name": "Action",
           "type": "App_Action"
+        },
+        {
+          "name": "GetMovie",
+          "type": "Get_movie"
         }
       ]
       }
