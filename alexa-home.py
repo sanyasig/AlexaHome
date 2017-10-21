@@ -60,7 +60,7 @@ def shutdown_PC():
     speech_text = 'ok'
     return statement(speech_text).simple_card('PAUSE', speech_text)
 
-@ask.intent('MOVIE', convert={'GetMovie': str})
+@ask.intent('DOWNMOVIES', convert={'GetMovie': str})
 def getMovie(GetMovie):
     print ("MESAGE FROM ALEXA HOME")
     print("*******" + GetMovie  + "**********")

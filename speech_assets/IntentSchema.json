@@ -16,12 +16,8 @@
         "intent": "PLAY"
       },
       {
-        "intent": "MOVIE"
-      },
-      {
-        "intent": "FIREAPPP"
-      },
-      {
+
+      "intent": "DialogTideIntent",
       "slots": [
         {
           "name": "App",
@@ -30,7 +26,12 @@
         {
           "name": "Action",
           "type": "App_Action"
-        },
+        }
+      ]
+      },
+       {
+       "intent": "DOWNMOVIES",
+      "slots": [
         {
           "name": "GetMovie",
           "type": "Get_movie"

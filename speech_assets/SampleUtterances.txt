@@ -15,6 +15,6 @@ PCOFF turnoff laptop
 PCOFF turnoff my pc
 PLAY play
 PAUSE pause
-MOVIE get english movie {GetMovie}
-MOVIE get hindi movie {GetMovie}
-MOVIE get telugu movie {GetMovie}
+DOWNMOVIES get english movie {GetMovie}
+DOWNMOVIES get hindi movie {GetMovie}
+DOWNMOVIES get telugu movie {GetMovie}
