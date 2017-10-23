@@ -4,6 +4,7 @@ import os
 from flask import Flask
 from flask_ask import Ask, request, session, question, statement
 import messaseManager
+import media_downloader
 
 
 app = Flask(__name__)
@@ -64,7 +65,8 @@ def shutdown_PC():
 def getMovie(GetMovie):
     print ("MESAGE FROM ALEXA HOME")
     print("*******" + GetMovie  + "**********")
-    speech_text = 'Ading title ' + GetMovie + "to transmissions"
+    response =  media_downloader.download_title(GetMovie)
+    speech_text = 'Adding title ' + GetMovie + "to transmissions"
     return statement(speech_text).simple_card('PCOFF', speech_text)
 
 @ask.session_ended

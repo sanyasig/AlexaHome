@@ -1,23 +1,22 @@
-  {
-    "intents": [
-      {
-        "intent": "HelloWorldIntent"
-      },
-      {
-        "intent": "AMAZON.HelpIntent"
-      },
-      {
-        "intent": "PCOFF"
-      },
-      {
-        "intent": "PAUSE"
-      },
-      {
-        "intent": "PLAY"
-      },
-      {
-
-      "intent": "DialogTideIntent",
+{
+  "intents": [
+    {
+      "intent": "HelloWorldIntent"
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    },
+    {
+      "intent": "PCOFF"
+    },
+    {
+      "intent": "PAUSE"
+    },
+    {
+      "intent": "PLAY"
+    },
+    {
+      "intent": "FIREAPPP",
       "slots": [
         {
           "name": "App",
@@ -28,15 +27,15 @@
           "type": "App_Action"
         }
       ]
-      },
-       {
-       "intent": "DOWNMOVIES",
+    },
+    {
+      "intent": "DOWNMOVIES",
       "slots": [
         {
           "name": "GetMovie",
           "type": "Get_movie"
         }
       ]
-      }
-    ]
-  }
+    }
+  ]
+}

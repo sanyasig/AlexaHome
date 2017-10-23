@@ -1,20 +1,15 @@
-HelloWorldIntent say hello
-HelloWorldIntent say hello world
-HelloWorldIntent hello
-HelloWorldIntent say hi
-HelloWorldIntent say hi world
-HelloWorldIntent hi
-HelloWorldIntent how are you
-FIREAPPP {Action} {APP}
 PCOFF shutdown computer
-PCOFF turnoff computer
 PCOFF shutdown pc
+PCOFF turnoff computer
 PCOFF turnoff pc
-PCOFF shutdown laptop
-PCOFF turnoff laptop
 PCOFF turnoff my pc
-PLAY play
 PAUSE pause
+PLAY play
+FIREAPPP {Action} {App}
+FIREAPPP get english movie
 DOWNMOVIES get english movie {GetMovie}
+DOWNMOVIES get movie {GetMovie}
+DOWNMOVIES download {GetMovie}
+DOWNMOVIES add {GetMovie} to transmissions
 DOWNMOVIES get hindi movie {GetMovie}
 DOWNMOVIES get telugu movie {GetMovie}
