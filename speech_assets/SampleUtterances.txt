@@ -12,4 +12,7 @@ DOWNMOVIES get movie {GetMovie}
 DOWNMOVIES download {GetMovie}
 DOWNMOVIES add {GetMovie} to transmissions
 DOWNMOVIES get hindi movie {GetMovie}
-DOWNMOVIES get telugu movie {GetMovie}
+TELUGULIST get telugu movies
+TELUGULIST get telugu movie
+TELUGULIST any new telugu movie
+TELUGULIST to get telugu movie list

@@ -48,3 +48,28 @@ def getSkyTorrentMagent(title, year):
                         if str(test).find("magnet:") != -1:
                             return each_c.attrs['href']
 
+
+
+
+def get_telugu_list():
+    base_url = 'http://www.movierulz.ms/telugu-movie/'
+    r = requests.get(base_url)
+    soup = BeautifulSoup(r.text, "lxml")
+
+
+    for tag in soup.find_all("dd"):
+        if (isinstance(tag, Tag) & tag.attrs.has_key('class')):
+            if('wp-caption-text' in tag.attrs['class']):
+                test = tag.contents[0]
+                print test.replace("(Telugu)", "").strip()
+
+# def get_telugu_list():
+#     base_url = 'http://www.movierulz.ms/telugu-movie/'
+#     r = requests.get(base_url)
+#     soup = BeautifulSoup(r.text, "lxml")
+#     for tag in soup.find_all("dt"):
+#         if (isinstance(tag, Tag) & tag.attrs.has_key('class')):
+#             if('gallery-icon' in tag.attrs['class']):
+#                 for each_tag in tag.contents:
+#                     if (isinstance(each_tag, Tag)):
+#                         print  each_tag.attrs['href']

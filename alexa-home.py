@@ -69,6 +69,13 @@ def getMovie(GetMovie):
     speech_text = 'Adding title ' + GetMovie + "to transmissions"
     return statement(speech_text).simple_card('PCOFF', speech_text)
 
+@ask.intent('TELUGULIST')
+def getTeluguMovieList():
+    print ("MESAGE FROM ALEXA HOME")
+    response =  media_downloader.get_telugu_list()
+    speech_text = 'Rarandoi Veduka Chudham'
+    return statement(speech_text).simple_card('PCOFF', speech_text)
+
 @ask.session_ended
 def session_ended():
     return "{}", 200
