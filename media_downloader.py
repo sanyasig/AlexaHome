@@ -4,7 +4,7 @@ import json
 import urllib
 import xml.etree.ElementTree as ET
 from bs4 import BeautifulSoup, Tag
-
+import transmissionrpc
 
 def download_title(title):
 
@@ -15,7 +15,9 @@ def download_title(title):
     year =  details['results'][0]['release_date'].split('-')[0]
     print  title + " " + year
     t_magent = getSkyTorrentMagent(title, year)
-    print t_magent
+    tc = transmissionrpc.Client('192.168.0.17', port=9091, user='nani', password='nanipi')
+    tc.add_torrent(t_magent)
+    print tc.get_torrents()
 
     # need to get the torrents link
     return "adding title " + title + "to transmissions"
