@@ -5,6 +5,9 @@ import urllib
 import xml.etree.ElementTree as ET
 from bs4 import BeautifulSoup, Tag
 import transmissionrpc
+import youtube_dl
+import os
+import time
 
 def download_title(title):
 
@@ -48,14 +51,10 @@ def getSkyTorrentMagent(title, year):
                         if str(test).find("magnet:") != -1:
                             return each_c.attrs['href']
 
-
-
-
 def get_telugu_list():
     base_url = 'http://www.movierulz.ms/telugu-movie/'
     r = requests.get(base_url)
     soup = BeautifulSoup(r.text, "lxml")
-
 
     for tag in soup.find_all("dd"):
         if (isinstance(tag, Tag) & tag.attrs.has_key('class')):
@@ -73,3 +72,46 @@ def get_telugu_list():
 #                 for each_tag in tag.contents:
 #                     if (isinstance(each_tag, Tag)):
 #                         print  each_tag.attrs['href']
+def get_youtube_songlist():
+    test_key = "AIzaSyC9H0Gl5cbgX_vniQ39D0ABFiN4xf8to8Y"
+    base_url =  "https://www.googleapis.com/youtube/v3/playlistItems?maxResults=50&playlistId=PL7Wn10dWKB2zYQvjdAX7HshQ3xYIRC-zE&part=snippet&key=" + test_key
+    song_list = send_http_requuest(base_url, 0 ,0)
+    test =  song_list['items'][0]['snippet']['resourceId']['videoId']
+    getSong(test, 0)
+    return None
+
+
+def getSong (id, key):
+
+    ydl_opts = {
+        'format': 'bestaudio/best',
+        'postprocessors': [{
+            'key': 'FFmpegExtractAudio',
+            'preferredcodec': 'mp3',
+            'preferredquality': '192',
+        }],
+        'logger': MyLogger(),
+        'progress_hooks': [my_hook],
+        'outtmpl':  os.path.expanduser('~') + '/music/%(title)s.%(ext)s',
+
+    }
+    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+        ydl.download(["https://www.youtube.com/watch?v=" + id])
+        time.sleep(2000)
+
+
+
+class MyLogger(object):
+    def debug(self, msg):
+        pass
+
+    def warning(self, msg):
+        pass
+
+    def error(self, msg):
+        print(msg)
+
+
+def my_hook(d):
+    if d['status'] == 'finished':
+        print('Done downloading, now converting ...')
