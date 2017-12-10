@@ -62,60 +62,6 @@ def get_telugu_list():
                 test = tag.contents[0]
                 print test.replace("(Telugu)", "").strip()
 
-# def get_telugu_list():
-#     base_url = 'http://www.movierulz.ms/telugu-movie/'
-#     r = requests.get(base_url)
-#     soup = BeautifulSoup(r.text, "lxml")
-#     for tag in soup.find_all("dt"):
-#         if (isinstance(tag, Tag) & tag.attrs.has_key('class')):
-#             if('gallery-icon' in tag.attrs['class']):
-#                 for each_tag in tag.contents:
-#                     if (isinstance(each_tag, Tag)):
-#                         print  each_tag.attrs['href']
-def get_youtube_songlist():
-    test_key = ""
-    base_url =  "https://www.googleapis.com/youtube/v3/playlistItems?maxResults=50&playlistId=PL7Wn10dWKB2zYQvjdAX7HshQ3xYIRC-zE&part=snippet&key=" + test_key
-    song_list = send_http_requuest(base_url, 0 ,0)
-    for items in song_list['items']:
-        video_id = items['snippet']['resourceId']['videoId']
-        print "dowloading song"
-    return None
-
-
-def getSong (id, key):
-
-    ydl_opts = {
-        'format': 'bestaudio/best',
-        'postprocessors': [{
-            'key': 'FFmpegExtractAudio',
-            'preferredcodec': 'mp3',
-            'preferredquality': '192',
-        }],
-        'logger': MyLogger(),
-        'progress_hooks': [my_hook],
-        'outtmpl':  os.path.expanduser('~') + '/music/%(title)s.%(ext)s',
-
-    }
-    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-        ydl.download(["https://www.youtube.com/watch?v=" + id])
-
-
-
-class MyLogger(object):
-    def debug(self, msg):
-        pass
-
-    def warning(self, msg):
-        pass
-
-    def error(self, msg):
-        print(msg)
-
-
-def my_hook(d):
-    if d['status'] == 'finished':
-        print('Done downloading, now converting ...')
-
 
 def download_youtube_playlist():
     p = subprocess.Popen('ssh -t nani@192.168.0.22 python /home/nani/work/getYoutube_playlist.py', shell=True,
@@ -123,4 +69,5 @@ def download_youtube_playlist():
     for line in p.stdout.readlines():
         print line,
     retval = p.wait()
+    return "Downloading"
 
