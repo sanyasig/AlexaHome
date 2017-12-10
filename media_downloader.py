@@ -2,11 +2,9 @@
 import requests
 import json
 import urllib
-import xml.etree.ElementTree as ET
 from bs4 import BeautifulSoup, Tag
 import transmissionrpc
-import youtube_dl
-import os
+from threading import Thread
 import subprocess
 
 def download_title(title):
@@ -64,10 +62,15 @@ def get_telugu_list():
 
 
 def download_youtube_playlist():
+    t = Thread(target=send_download_request, args=(9,))
+    t.start()
+    return "Downloading"
+
+def send_download_request(i):
     p = subprocess.Popen('ssh -t nani@192.168.0.22 python /home/nani/work/getYoutube_playlist.py', shell=True,
                          stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     for line in p.stdout.readlines():
         print line,
     retval = p.wait()
-    return "Downloading"
+
 
