@@ -39,6 +39,9 @@
     },
      {
       "intent": "TELUGULIST"
+     },
+    {
+      "intent": "DYPLAYLIST"
      }
   ]
 }

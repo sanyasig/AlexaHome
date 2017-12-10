@@ -16,3 +16,6 @@ TELUGULIST get telugu movies
 TELUGULIST get telugu movie
 TELUGULIST any new telugu movie
 TELUGULIST to get telugu movie list
+DYPLAYLIST download youtube playlist
+DYPLAYLIST get my youtube playlist
+DYPLAYLIST download my youtube playlist

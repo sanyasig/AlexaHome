@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup, Tag
 import transmissionrpc
 import youtube_dl
 import os
-import time
+import subprocess
 
 def download_title(title):
 
@@ -73,11 +73,12 @@ def get_telugu_list():
 #                     if (isinstance(each_tag, Tag)):
 #                         print  each_tag.attrs['href']
 def get_youtube_songlist():
-    test_key = "AIzaSyC9H0Gl5cbgX_vniQ39D0ABFiN4xf8to8Y"
+    test_key = ""
     base_url =  "https://www.googleapis.com/youtube/v3/playlistItems?maxResults=50&playlistId=PL7Wn10dWKB2zYQvjdAX7HshQ3xYIRC-zE&part=snippet&key=" + test_key
     song_list = send_http_requuest(base_url, 0 ,0)
-    test =  song_list['items'][0]['snippet']['resourceId']['videoId']
-    getSong(test, 0)
+    for items in song_list['items']:
+        video_id = items['snippet']['resourceId']['videoId']
+        print "dowloading song"
     return None
 
 
@@ -97,7 +98,6 @@ def getSong (id, key):
     }
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         ydl.download(["https://www.youtube.com/watch?v=" + id])
-        time.sleep(2000)
 
 
 
@@ -115,3 +115,12 @@ class MyLogger(object):
 def my_hook(d):
     if d['status'] == 'finished':
         print('Done downloading, now converting ...')
+
+
+def download_youtube_playlist():
+    p = subprocess.Popen('ssh -t nani@192.168.0.22 python /home/nani/work/getYoutube_playlist.py', shell=True,
+                         stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    for line in p.stdout.readlines():
+        print line,
+    retval = p.wait()
+

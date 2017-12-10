@@ -76,6 +76,12 @@ def getTeluguMovieList():
     speech_text = 'Rarandoi Veduka Chudham'
     return statement(speech_text).simple_card('PCOFF', speech_text)
 
+@ask.intent('DYPLAYLIST')
+def getTeluguMovieList():
+    print ("Downloading your youtube playlist")
+    response =  media_downloader.download_youtube_playlist()
+    return statement(response).simple_card('PCOFF', response)
+
 @ask.session_ended
 def session_ended():
     return "{}", 200
