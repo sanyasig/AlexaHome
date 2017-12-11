@@ -7,6 +7,9 @@ import transmissionrpc
 from threading import Thread
 import subprocess
 
+from urllib3.util import request
+
+
 def download_title(title):
 
     print("get actual name")
@@ -59,6 +62,13 @@ def get_telugu_list():
             if('wp-caption-text' in tag.attrs['class']):
                 test = tag.contents[0]
                 print test.replace("(Telugu)", "").strip()
+
+def clear_youttube_playlist():
+        test_key = "AIzaSyC9H0Gl5cbgX_vniQ39D0ABFiN4xf8to8Y"
+        base_url = "https://www.googleapis.com/youtube/v3/playlistItems?maxResults=50&playlistId=PL7Wn10dWKB2zYQvjdAX7HshQ3xYIRC-zE&part=snippet&key=" + test_key
+        song_list = send_http_requuest(base_url, 0, 0)
+        for items in song_list['items']:
+            video_id = items['snippet']['resourceId']['videoId']
 
 
 def download_youtube_playlist():

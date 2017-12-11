@@ -19,3 +19,6 @@ TELUGULIST to get telugu movie list
 DYPLAYLIST download youtube playlist
 DYPLAYLIST get my youtube playlist
 DYPLAYLIST download my youtube playlist
+NEXTEVENTS next events
+NEXTEVENTS any new events
+NEXTEVENTS what are my upcomign events

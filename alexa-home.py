@@ -3,6 +3,8 @@ import os
 
 from flask import Flask
 from flask_ask import Ask, request, session, question, statement
+
+import calendar_service
 import messaseManager
 import media_downloader
 
@@ -80,6 +82,12 @@ def getTeluguMovieList():
 def getTeluguMovieList():
     print ("Downloading your youtube playlist")
     response =  media_downloader.download_youtube_playlist()
+    return statement(response).simple_card('PCOFF', response)
+
+@ask.intent('NEXTEVENTS')
+def getTeluguMovieList():
+    print ("getting next events")
+    response =  calendar_service.get_home_controller_events()
     return statement(response).simple_card('PCOFF', response)
 
 @ask.session_ended
