@@ -52,7 +52,12 @@ def get_home_controller_events():
         events = service.events().list(calendarId='gpkf2puham77c5gn8ra8e4t7r4@group.calendar.google.com', pageToken=page_token).execute()
         message = ""
         for event in events['items']:
-            e_date = event["start"]["dateTime"]
+            e_date = None
+            start = event["start"]
+            if start.has_key("dateTime"):
+                e_date = start["dateTime"]
+            if start.has_key("date"):
+                e_date = start["date"]
             e_summary = event["summary"]
             parsed_date = parser.parse(e_date)
             weekday = parsed_date.strftime("%A")
