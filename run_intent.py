@@ -1,4 +1,6 @@
-import calendar_service
+from messaging.launcher import HomeMessager
 
 if __name__ == "__main__":
-   print calendar_service.get_home_controller_events()
+
+   fire_stick = HomeMessager("192.168.0.17")
+   fire_stick.launch()

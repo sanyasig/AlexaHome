@@ -1,17 +1,19 @@
 import logging
 import os
+from multiprocessing import Process
 
 from flask import Flask
-from flask_ask import Ask, request, session, question, statement
+from flask_ask import Ask, question, statement
 
-import calendar_service
-import messaseManager
 import media_downloader
-
+import messaseManager
+from messaging import launcher
+from services import calendar_service
 
 app = Flask(__name__)
 ask = Ask(app, "/alexa/home")
 logging.getLogger('flask_ask').setLevel(logging.DEBUG)
+
 
 @app.route('/alexa')
 def homepage():
@@ -95,9 +97,22 @@ def session_ended():
     return "{}", 200
 
 
-if __name__ == '__main__':
+def alexa_launch():
     if 'ASK_VERIFY_REQUESTS' in os.environ:
         verify = str(os.environ.get('ASK_VERIFY_REQUESTS', '')).lower()
         if verify == 'false':
             app.config['ASK_VERIFY_REQUESTS'] = False
     app.run(debug=True)
+
+
+if __name__ == '__main__':
+    jobs = []
+    p = Process(target=alexa_launch)
+    p.start()
+
+    p1 = Process(target=launcher.start_process("192.168.0.17"), args=('bob',))
+    p1.start()
+
+    print("STARTING ALEXA")
+
+
