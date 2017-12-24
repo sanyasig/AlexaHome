@@ -29,3 +29,5 @@ def topic_adb(message=None):
             else:
                 print "turing off kodi"
                 firestick.turn_off_kodi()
+        elif (split_message[1] == "self"):
+            firestick.restart()

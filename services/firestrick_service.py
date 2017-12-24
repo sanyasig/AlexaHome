@@ -34,7 +34,7 @@ class FireStick():
 
     def turn_on_kodi(self):
         self.reconnect()
-        self.run_bash_command(self.start_youtube)
+        self.run_bash_command(self.stop_youtube)
         self.run_bash_command("sleep 1")
         self.run_bash_command(self.start_kodi)
         self.run_bash_command("adb shell input keyevent 25")
