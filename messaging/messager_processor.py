@@ -13,7 +13,7 @@ def topic_adb(message=None):
     firestick = FireStick("192.168.0.6 ")
     split_message = message.split("_")
 
-    if split_message.length > 1:
+    if len(split_message) > 1:
         if(split_message[1] == "youtube"):
             if split_message[2] == "on" :
                 print "turing on youtube"
