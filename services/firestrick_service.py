@@ -16,6 +16,7 @@ class FireStick():
         print "restarting Firestick"
         self.reconnect()
         self.run_bash_command("adb reboot")
+        self.dissconnect()
 
     def turn_on_youtube(self):
         self.reconnect()
@@ -23,11 +24,13 @@ class FireStick():
         self.run_bash_command("sleep 1")
         self.run_bash_command(self.start_youtube)
         self.run_bash_command("adb shell input keyevent 25")
+        self.dissconnect()
 
     def turn_off_youtube(self):
         self.reconnect()
         self.run_bash_command(self.stop_youtube)
         self.run_bash_command("adb shell input keyevent 25")
+        self.dissconnect()
 
     def turn_on_kodi(self):
         self.reconnect()
@@ -35,11 +38,13 @@ class FireStick():
         self.run_bash_command("sleep 1")
         self.run_bash_command(self.start_kodi)
         self.run_bash_command("adb shell input keyevent 25")
+        self.dissconnect()
 
     def turn_off_kodi(self):
         self.reconnect()
         self.run_bash_command(self.stop_kodi)
         self.run_bash_command("adb shell input keyevent 25")
+        self.dissconnect()
 
     def run_bash_command(self, bashCommand):
         process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
@@ -50,3 +55,6 @@ class FireStick():
         self.run_bash_command("adb kill-server")
         self.run_bash_command("adb start-server")
         self.run_bash_command("adb connect " + self.ip)
+
+    def dissconnect(self):
+        self.run_bash_command("adb kill-server")
