@@ -15,6 +15,7 @@ def get_config(type):
     return {
         'youtube': config['youtube'],
         'b': 2,
+        'pc' : config['pc'],
     }[type]
 
 

@@ -8,7 +8,7 @@ class HomeMessager():
 
     pi_ip = None
 
-    subscribe_list = ["home/adb"]
+    subscribe_list = ["home/adb", "home/pc"]
 
     def __init__(self, ip = None):
         self.pi_ip = ip

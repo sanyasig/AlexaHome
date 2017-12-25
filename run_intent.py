@@ -1,6 +1,10 @@
+import config_parser
 from messaging.launcher import HomeMessager
+import ssh as ssh
+import paramiko, getpass, re, time
+
+from services import Utils
 
 if __name__ == "__main__":
-
-   fire_stick = HomeMessager("192.168.0.17")
-   fire_stick.launch()
+   print "runing a test intents"
+   Utils.execute_remote_command()

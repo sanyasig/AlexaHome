@@ -1,8 +1,9 @@
 import subprocess
 
-class FireStick():
+from services.parent_service import ParentService
 
-    ip = None
+
+class FireStick(ParentService):
 
     stop_kodi="adb shell am force-stop org.xbmc.kodi"
     start_kodi="adb shell am start -n org.xbmc.kodi/.Splash"
@@ -11,6 +12,32 @@ class FireStick():
 
     def __init__(self, ip = None):
         self.ip = ip
+
+    def get_function(self, message=None):
+
+        split_message = message.split("_")
+        return_fuction = None
+
+        if len(split_message) > 1:
+            if (split_message[1] == "youtube"):
+                if split_message[2] == "on":
+                    print "turing on youtube"
+                    return_fuction =  self.turn_on_youtube
+                else:
+                    print "turing off youtube"
+                    return_fuction = self.turn_off_youtube
+
+            elif (split_message[1] == "kodi"):
+                if split_message[2] == "on":
+                    print "turing on kodi"
+                    return_fuction = self.turn_on_kodi
+                else:
+                    print "turing off kodi"
+                    funtion = self.turn_off_kodi
+            elif (split_message[1] == "self"):
+                return_fuction = self.restart
+
+        return return_fuction
 
     def restart(self):
         print "restarting Firestick"
@@ -58,3 +85,4 @@ class FireStick():
 
     def dissconnect(self):
         self.run_bash_command("adb kill-server")
+

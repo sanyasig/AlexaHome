@@ -6,8 +6,7 @@ from flask import Flask
 from flask_ask import Ask, question, statement
 
 import media_downloader
-import messaseManager
-from messaging import launcher
+from messaging import launcher, mqtt_publish
 from services import calendar_service
 
 app = Flask(__name__)
@@ -43,25 +42,25 @@ def lauch_app(App, Action):
     if Action in ["start", "lauch", "turnon", "turn on"]:
         action_word = "start:" + App
 
-    messaseManager.send("home/adb", action_word)
+    mqtt_publish.send("home/adb", action_word)
     speech_text = 'app launching!'
     return statement(speech_text).simple_card('FIREAPPP', speech_text)
 
 @ask.intent('PCOFF')
 def shutdown_PC():
-    messaseManager.send("home/pc", "off")
+    mqtt_publish.send("home/pc", "off")
     speech_text = 'Turinng off your laptop'
     return statement(speech_text).simple_card('PCOFF', speech_text)
 
 @ask.intent('PLAY')
 def shutdown_PC():
-    messaseManager.send("home/adb", "play")
+    mqtt_publish.send("home/adb", "play")
     speech_text = 'ok'
     return statement(speech_text).simple_card('PLAY', speech_text)
 
 @ask.intent('PAUSE')
 def shutdown_PC():
-    messaseManager.send("home/adb", "pause")
+    mqtt_publish.send("home/adb", "pause")
     speech_text = 'ok'
     return statement(speech_text).simple_card('PAUSE', speech_text)
 
