@@ -11,7 +11,7 @@ class FireStick(ParentService):
     stop_youtube="adb shell am force-stop org.chromium.youtube_apk"
 
     def __init__(self, ip = None):
-        self.ip = ip
+        self.ip = "192.168.0.6"
 
     def get_function(self, message=None):
 
@@ -36,7 +36,6 @@ class FireStick(ParentService):
                     funtion = self.turn_off_kodi
             elif (split_message[1] == "self"):
                 return_fuction = self.restart
-
         return return_fuction
 
     def restart(self):

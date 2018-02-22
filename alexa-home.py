@@ -106,8 +106,8 @@ def alexa_launch():
 
 if __name__ == '__main__':
     jobs = []
-    p = Process(target=alexa_launch)
-    p.start()
+   # p = Process(target=alexa_launch)
+   # p.start()
 
     p1 = Process(target=launcher.start_process("192.168.0.17"), args=('bob',))
     p1.start()

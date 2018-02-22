@@ -4,10 +4,16 @@ from services.pc_service import Home_PC
 import configparser
 import  os
 
+from services.rmBroadLinkService import RMBroadLInk
+
+
 def getService(topic):
 
      if("adb" in topic):
          return FireStick("192.168.0.17")
+
+     if ("tv" in topic):
+         return RMBroadLInk("192.168.0.17")
 
      elif("pc" in topic):
          config = get_config("pc")

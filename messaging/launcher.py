@@ -8,8 +8,6 @@ class HomeMessager():
 
     pi_ip = None
 
-    subscribe_list = ["home/adb", "home/pc"]
-
     def __init__(self, ip = None):
         self.pi_ip = ip
 
@@ -29,9 +27,8 @@ class HomeMessager():
 
     def on_connect(self, client, userdata, flags, rc):
         print("Connected with result code " + str(rc))
-        for sub in self.subscribe_list:
-            print("subscribing to " + sub)
-            client.subscribe(sub)
+        print("subscribing to home/#")
+        client.subscribe("home/#")
 
 def start_process(ip= None):
     messager = HomeMessager(ip)
