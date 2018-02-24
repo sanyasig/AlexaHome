@@ -17,10 +17,7 @@ def youtube(topic=None, details=None):
     FireStick().turn_on_kodi()
     print ("in tv platform")
 
+
+
 def itself(topic=None, details=None):
-    my_dict = json.loads(details)
-    new_state = my_dict.get("state", None)
-    if ("on" in new_state):
-        RMBroadLInk().toggle_power()
-    else :
-        RMBroadLInk().toggle_power()
+    RMBroadLInk().toggle_power()

@@ -2,7 +2,7 @@ from services import *
 import os
 import json
 
-from services import tv
+from services import tv, ifttt
 
 
 def process_message(topic=None, message=None):
@@ -11,12 +11,12 @@ def process_message(topic=None, message=None):
         print "topic: " + topic
         print "status " + message
         module = None
+
         if("tv" in topic):
             module = tv
+        if ("ifttt" in topic):
+            module = ifttt
 
-        #tv.kodi("",  "")
-        #platform = topic.split("/")[1]
-       # module = __import__("services." + platform)
         func = getattr(module, topic.split("/")[2])
         func(topic, message)
 

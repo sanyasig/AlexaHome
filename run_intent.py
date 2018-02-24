@@ -1,8 +1,6 @@
 import data_manager
 from messaging import mqtt_publish
+from services import ifttt
 
 if __name__ == "__main__":
-   print "runing a test intents"
-   data_manager.toggel_state("main_tv")
-   mqtt_publish.send("test", "asd")
-
+   ifttt.trigger("", "socket1-on")

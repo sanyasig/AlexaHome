@@ -28,8 +28,8 @@ def download_title(title):
 
 def send_http_requuest(url , params, type):
     print("sending http request")
-    r = requests.get(url)
 
+    r = requests.get(url)
     if(r.status_code == 200):
         return json.loads(r.text)
     r.status_code
