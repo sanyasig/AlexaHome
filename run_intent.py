@@ -1,6 +1,6 @@
 import data_manager
 from messaging import mqtt_publish
-from services import ifttt
+from services import ifttt, firetv
 
 if __name__ == "__main__":
-   ifttt.trigger("", "socket1-on")
+   firetv.kodi("", "")

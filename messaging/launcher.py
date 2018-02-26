@@ -1,5 +1,5 @@
 import paho.mqtt.client as mqtt
-import time
+import json
 
 from messaging.messager_processor import process_message
 
@@ -23,7 +23,7 @@ class HomeMessager():
         print("message topic=",message.topic)
         print("message qos=",message.qos)
         print("message retain flag=",message.retain)
-        process_message(message.topic, str(message.payload.decode("utf-8")))
+        process_message(message.topic, message.payload)
 
     def on_connect(self, client, userdata, flags, rc):
         print("Connected with result code " + str(rc))

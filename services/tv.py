@@ -17,7 +17,6 @@ def youtube(topic=None, details=None):
     FireStick().turn_on_kodi()
     print ("in tv platform")
 
-
-
 def itself(topic=None, details=None):
-    RMBroadLInk().toggle_power()
+    ip = str(topic).split("/")[-1]
+    RMBroadLInk(ip).toggle_power()

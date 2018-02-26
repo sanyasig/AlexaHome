@@ -2,7 +2,7 @@ from services import *
 import os
 import json
 
-from services import tv, ifttt
+from services import tv, ifttt, firetv
 
 
 def process_message(topic=None, message=None):
@@ -10,12 +10,13 @@ def process_message(topic=None, message=None):
     try:
         print "topic: " + topic
         print "status " + message
-        module = None
 
         if("tv" in topic):
             module = tv
         if ("ifttt" in topic):
             module = ifttt
+        if ("firetv" in topic):
+            module = firetv
 
         func = getattr(module, topic.split("/")[2])
         func(topic, message)

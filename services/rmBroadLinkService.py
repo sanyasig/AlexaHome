@@ -24,7 +24,7 @@ class RMBroadLInk(ParentService):
         return return_fuction
 
     def toggle_power(self):
-        device = broadlink.rm(host=("192.168.0.25", 80), mac=bytearray.fromhex("34ea344298bf"))
+        device = broadlink.rm(host=(self.ip, 80), mac=bytearray.fromhex("34ea344298bf"))
         print "Connecting to Broadlink device...."
         device.auth()
         time.sleep(1)

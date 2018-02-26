@@ -11,7 +11,7 @@ class FireStick(ParentService):
     stop_youtube="adb shell am force-stop org.chromium.youtube_apk"
 
     def __init__(self, ip = None):
-        self.ip = "192.168.0.6"
+        self.ip = ip
 
     def get_function(self, message=None):
 
