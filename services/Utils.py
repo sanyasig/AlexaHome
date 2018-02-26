@@ -1,4 +1,3 @@
-import paramiko
 from services.firestrick_service import FireStick
 from services.pc_service import Home_PC
 import configparser
@@ -34,20 +33,20 @@ def get_config(type):
     }[type]
 
 
-def execute_remote_command(hostname=None, username=None, password=None, command=None):
-    port = 22
-    output = None
-
-    try:
-        client = paramiko.SSHClient()
-        client.load_system_host_keys()
-        client.set_missing_host_key_policy(paramiko.WarningPolicy)
-
-        client.connect(hostname, port=port, username=username, password=password)
-
-        stdin, stdout, stderr = client.exec_command(command)
-        print stdout.read(),
-
-    finally:
-        client.close()
+# def execute_remote_command(hostname=None, username=None, password=None, command=None):
+#     port = 22
+#     output = None
+#
+#     try:
+#         client = paramiko.SSHClient()
+#         client.load_system_host_keys()
+#         client.set_missing_host_key_policy(paramiko.WarningPolicy)
+#
+#         client.connect(hostname, port=port, username=username, password=password)
+#
+#         stdin, stdout, stderr = client.exec_command(command)
+#         print stdout.read(),
+#
+#     finally:
+#         client.close()
 
