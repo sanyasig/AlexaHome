@@ -2,7 +2,7 @@ from services import *
 import os
 import json
 
-from services import tv, ifttt, firetv
+from services import tv, ifttt, firetv, dash, volumio
 
 
 def process_message(topic=None, message=None):
@@ -17,6 +17,10 @@ def process_message(topic=None, message=None):
             module = ifttt
         if ("firetv" in topic):
             module = firetv
+        if ("dash" in topic):
+            module = dash
+        if ("volumio" in topic):
+                module = volumio
 
         func = getattr(module, topic.split("/")[2])
         func(topic, message)

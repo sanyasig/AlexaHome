@@ -5,8 +5,8 @@ config = 0;
 
 def read_config():
     config = configparser.ConfigParser()
-    print(config.sections())
     config.read(os.path.expanduser('~') + '/work/alexa_settings.ini')
+    print(config.sections())
     return config
 
 
