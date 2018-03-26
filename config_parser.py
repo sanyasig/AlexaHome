@@ -5,7 +5,7 @@ config = 0;
 
 def read_config():
     config = configparser.ConfigParser()
-    config.read(os.path.expanduser('~') + '/work/alexa_settings.ini')
+    config.read(os.path.expanduser('~') + '/home_settings.ini')
     print(config.sections())
     return config
 
@@ -17,6 +17,3 @@ def get_config(type):
         'b': 2,
         'pc' : config['pc'],
     }[type]
-
-
-

@@ -14,7 +14,7 @@ def download_title(title):
 
     print("get actual name")
     # get torrent file
-    details = send_http_requuest("https://api.themoviedb.org/3/search/movie?api_key=6185e808668fae673a5665b757c6d099&query="+title, 0, 0)
+    details = send_http_requuest("https://api.themoviedb.org/3/search/movie?api_key=&query="+title, 0, 0)
     title = details['results'][0]['title']
     year =  details['results'][0]['release_date'].split('-')[0]
     print  title + " " + year
