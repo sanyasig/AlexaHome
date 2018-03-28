@@ -39,4 +39,20 @@ def daily(topic=None, details=None):
                 "accessCode": config.get('notify_me', 'api_key')
             })
             requests.post(url="https://api.notifymyecho.com/v1/NotifyMe", data=body)
+            headers = {"Access-Token": "o.Qiiw4SPAmxx3GbBxZDRO5XpYFcdgtBTq", "Content-Type":"application/json"}
+            body = json.dumps({
+                "body": each_message,
+                "title": 'Travis Reminder'
+            })
+            requests.post(url="https://api.pushbullet.com/v2/pushes", data=body, headers= headers)
+
+            ACCESS_TOKEN = config.get('push_bullet', 'access_token')
+            headers = {'Authorization': 'Bearer ' + ACCESS_TOKEN, 'Content-Type': 'application/json'}
+            body = json.dumps({
+                'body': each_message,
+                'title': 'Travis Reminder',
+                'type': 'note'
+            })
+            response = requests.post(url="https://api.pushbullet.com/v2/pushes", data=body, headers=headers)
+            print (response)
             print each_message
