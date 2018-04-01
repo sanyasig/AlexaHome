@@ -55,4 +55,4 @@ def daily(topic=None, details=None):
             })
             response = requests.post(url="https://api.pushbullet.com/v2/pushes", data=body, headers=headers)
             print (response)
-            print each_message
+            print(each_message)

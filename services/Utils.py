@@ -20,7 +20,7 @@ def getService(topic):
 
 def read_config():
     config = configparser.ConfigParser()
-    print(config.sections())
+    print((config.sections()))
     config.read(os.path.expanduser('~') + '/work/alexa_settings.ini')
     return config
 

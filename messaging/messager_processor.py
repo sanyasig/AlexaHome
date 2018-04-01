@@ -8,8 +8,8 @@ from services import tv, ifttt, firetv, dash, volumio, alerts
 def process_message(topic=None, message=None):
  # TODO: need to fix the dynamic loading of modules
     try:
-        print "topic: " + topic
-        print "status " + message
+        print("topic: " + topic)
+        print("status " + message)
 
         if("tv" in topic):
             module = tv
@@ -28,7 +28,7 @@ def process_message(topic=None, message=None):
         func(topic, message)
 
     except :
-        print "Cannto find service"
+        print("Cannto find service")
 
     # print "mesage: " + message
     # service = Utils.getService(topic)

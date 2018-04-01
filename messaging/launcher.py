@@ -19,14 +19,14 @@ class HomeMessager():
         client.loop_forever()
 
     def on_message(self, client, userdata, message):
-        print("message received " ,str(message.payload.decode("utf-8")))
-        print("message topic=",message.topic)
-        print("message qos=",message.qos)
-        print("message retain flag=",message.retain)
+        print(("message received " ,str(message.payload.decode("utf-8"))))
+        print(("message topic=",message.topic))
+        print(("message qos=",message.qos))
+        print(("message retain flag=",message.retain))
         process_message(message.topic, message.payload)
 
     def on_connect(self, client, userdata, flags, rc):
-        print("Connected with result code " + str(rc))
+        print(("Connected with result code " + str(rc)))
         print("subscribing to home/#")
         client.subscribe("home/#")
 

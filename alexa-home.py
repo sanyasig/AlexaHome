@@ -67,7 +67,7 @@ def shutdown_PC():
 @ask.intent('DOWNMOVIES', convert={'GetMovie': str})
 def getMovie(GetMovie):
     print ("MESAGE FROM ALEXA HOME")
-    print("*******" + GetMovie  + "**********")
+    print(("*******" + GetMovie  + "**********"))
     response =  media_downloader.download_title(GetMovie)
     speech_text = 'Adding title ' + GetMovie + "to transmissions"
     return statement(speech_text).simple_card('PCOFF', speech_text)
@@ -109,7 +109,7 @@ if __name__ == '__main__':
    # p = Process(target=alexa_launch)
    # p.start()
 
-    p1 = Process(target=launcher.start_process("192.168.0.17"), args=('bob',))
+    p1 = Process(target=launcher.start_process("192.168.0.32"), args=('bob',))
     p1.start()
 
     print("STARTING ALEXA")

@@ -1,7 +1,7 @@
 # get valid title https://api.themoviedb.org/3/search/movie?api_key=6185e808668fae673a5665b757c6d099&query=Jack+Reacher
 import requests
 import json
-import urllib
+import urllib.request, urllib.parse, urllib.error
 from bs4 import BeautifulSoup, Tag
 import transmissionrpc
 from threading import Thread
@@ -17,11 +17,11 @@ def download_title(title):
     details = send_http_requuest("https://api.themoviedb.org/3/search/movie?api_key=&query="+title, 0, 0)
     title = details['results'][0]['title']
     year =  details['results'][0]['release_date'].split('-')[0]
-    print  title + " " + year
+    print(title + " " + year)
     t_magent = getSkyTorrentMagent(title, year)
     tc = transmissionrpc.Client('192.168.0.17', port=9091, user='nani', password='nanipi')
     tc.add_torrent(t_magent)
-    print tc.get_torrents()
+    print(tc.get_torrents())
 
     # need to get the torrents link
     return "adding title " + title + "to transmissions"
@@ -37,9 +37,9 @@ def send_http_requuest(url , params, type):
 
 def getSkyTorrentMagent(title, year):
     base_url = "https://www.skytorrents.in"
-    q_string = urllib.urlencode({ 'q' : title + ' ' + year})
+    q_string = urllib.parse.urlencode({ 'q' : title + ' ' + year})
     url = str(base_url) + "/search/all/ed/1/?l=en-us&" + q_string
-    print url
+    print(url)
     r = requests.get(url)
     soup = BeautifulSoup(r.text, "lxml")
     for tag in soup.find_all("td"):
@@ -47,7 +47,7 @@ def getSkyTorrentMagent(title, year):
         for each_c in a:
             if isinstance(each_c, Tag):
                 if hasattr(each_c, 'attrs'):
-                    if each_c.attrs.has_key("href"):
+                    if "href" in each_c.attrs:
                         test  =  each_c.attrs['href']
                         if str(test).find("magnet:") != -1:
                             return each_c.attrs['href']
@@ -58,10 +58,10 @@ def get_telugu_list():
     soup = BeautifulSoup(r.text, "lxml")
 
     for tag in soup.find_all("dd"):
-        if (isinstance(tag, Tag) & tag.attrs.has_key('class')):
+        if (isinstance(tag, Tag) & ('class' in tag.attrs)):
             if('wp-caption-text' in tag.attrs['class']):
                 test = tag.contents[0]
-                print test.replace("(Telugu)", "").strip()
+                print(test.replace("(Telugu)", "").strip())
 
 def clear_youttube_playlist():
         test_key = "AIzaSyC9H0Gl5cbgX_vniQ39D0ABFiN4xf8to8Y"
@@ -80,7 +80,7 @@ def send_download_request(i):
     p = subprocess.Popen('ssh -t nani@192.168.0.22 python /home/nani/work/getYoutube_playlist.py', shell=True,
                          stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     for line in p.stdout.readlines():
-        print line,
+        print(line, end=' ')
     retval = p.wait()
 
 

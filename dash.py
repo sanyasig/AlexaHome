@@ -50,7 +50,7 @@ class DashButtons():
         self.buttons[mac] = function
 
     def press(self, mac):
-        print
+        print()
         if mac in self.buttons:
             self.buttons[mac]()
             return True

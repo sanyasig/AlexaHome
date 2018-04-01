@@ -1,4 +1,4 @@
-from __future__ import print_function
+
 import httplib2
 import os
 
@@ -54,9 +54,9 @@ def get_home_controller_events():
         for event in events['items']:
             e_date = None
             start = event["start"]
-            if start.has_key("dateTime"):
+            if "dateTime" in start:
                 e_date = start["dateTime"]
-            if start.has_key("date"):
+            if "date" in start:
                 e_date = start["date"]
             e_summary = event["summary"]
             parsed_date = parser.parse(e_date)

@@ -9,9 +9,9 @@ def playlist(topic=None, details=None):
     name = all_details.get('playlist')
 
     url = "http://" +str(ip) + "/api/v1/commands/?cmd=playplaylist&name=" + str(name)
-    print url
+    print(url)
     r = requests.get(url)
-    print r.status_code
+    print(r.status_code)
 
 
-    print ""
+    print("")
