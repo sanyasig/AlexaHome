@@ -4,18 +4,18 @@ import json
 
 
 def switch_off():
-    print("button has been pressed arial-button")
+    ahlogger.log("button has been pressed arial-button")
     publish.single("home/dash", "arial-button", hostname="192.168.0.17")
 
 
 def switch_on():
-    print("button has been pressedi blank-button")
+    ahlogger.log("button has been pressedi blank-button")
     publish.single("home/dash", "blank-button", hostname="192.168.0.17")
 
 
 def fiesta_btn():
     MQTT_MSG = json.dumps({"playlist": "morning", "ip": "192.168.0.24"});
-    print("Fiesta button has been pressedi blank-button")
+    ahlogger.log("Fiesta button has been pressedi blank-button")
     publish.single("home/dash/fiesta", MQTT_MSG, hostname="192.168.0.17")
 
 
@@ -50,7 +50,7 @@ class DashButtons():
         self.buttons[mac] = function
 
     def press(self, mac):
-        print()
+        ahlogger.log()
         if mac in self.buttons:
             self.buttons[mac]()
             return True

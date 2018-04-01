@@ -21,25 +21,25 @@ class FireStick(ParentService):
         if len(split_message) > 1:
             if (split_message[1] == "youtube"):
                 if split_message[2] == "on":
-                    print("turing on youtube")
+                    ahlogger.log("turing on youtube")
                     return_fuction =  self.turn_on_youtube
                 else:
-                    print("turing off youtube")
+                    ahlogger.log("turing off youtube")
                     return_fuction = self.turn_off_youtube
 
             elif (split_message[1] == "kodi"):
                 if split_message[2] == "on":
-                    print("turing on kodi")
+                    ahlogger.log("turing on kodi")
                     return_fuction = self.turn_on_kodi
                 else:
-                    print("turing off kodi")
+                    ahlogger.log("turing off kodi")
                     funtion = self.turn_off_kodi
             elif (split_message[1] == "self"):
                 return_fuction = self.restart
         return return_fuction
 
     def restart(self):
-        print("restarting Firestick")
+        ahlogger.log("restarting Firestick")
         self.reconnect()
         self.run_bash_command("adb reboot")
         self.dissconnect()
@@ -75,7 +75,7 @@ class FireStick(ParentService):
     def run_bash_command(self, bashCommand):
         process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
         output, error = process.communicate()
-        print(output)
+        ahlogger.log(output)
 
     def reconnect(self):
         self.run_bash_command("adb kill-server")

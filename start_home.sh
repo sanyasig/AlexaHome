@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ps aux | grep alexa-home.py | awk '{print $2}' | xargs kill
+ps aux | grep alexa-home.py | awk '{ahlogger.log $2}' | xargs kill
 
 cd /home/nanipi/work/AlexaHome
 /usr/bin/git pull

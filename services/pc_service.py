@@ -1,5 +1,6 @@
 from services.parent_service import ParentService
 from . import Utils
+import ahlogger
 
 class Home_PC(ParentService):
 
@@ -25,5 +26,5 @@ class Home_PC(ParentService):
 
     def shutdown(self):
         output = Utils.execute_remote_command(self.ip, self.username, self.password, self.shutdown_cmd)
-        print(output)
+        ahlogger.log(output)
 

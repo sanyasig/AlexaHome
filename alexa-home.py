@@ -5,6 +5,7 @@ from multiprocessing import Process
 from flask import Flask
 from flask_ask import Ask, question, statement
 
+import ahlogger
 import media_downloader
 from messaging import launcher, mqtt_publish
 from services import calendar_service
@@ -66,28 +67,28 @@ def shutdown_PC():
 
 @ask.intent('DOWNMOVIES', convert={'GetMovie': str})
 def getMovie(GetMovie):
-    print ("MESAGE FROM ALEXA HOME")
-    print(("*******" + GetMovie  + "**********"))
+    ahlogger.log ("MESAGE FROM ALEXA HOME")
+    ahlogger.log(("*******" + GetMovie  + "**********"))
     response =  media_downloader.download_title(GetMovie)
     speech_text = 'Adding title ' + GetMovie + "to transmissions"
     return statement(speech_text).simple_card('PCOFF', speech_text)
 
 @ask.intent('TELUGULIST')
 def getTeluguMovieList():
-    print ("MESAGE FROM ALEXA HOME")
+    ahlogger.log ("MESAGE FROM ALEXA HOME")
     response =  media_downloader.get_telugu_list()
     speech_text = 'Rarandoi Veduka Chudham'
     return statement(speech_text).simple_card('PCOFF', speech_text)
 
 @ask.intent('DYPLAYLIST')
 def getTeluguMovieList():
-    print ("Downloading your youtube playlist")
+    ahlogger.log ("Downloading your youtube playlist")
     response =  media_downloader.download_youtube_playlist()
     return statement(response).simple_card('PCOFF', response)
 
 @ask.intent('NEXTEVENTS')
 def getTeluguMovieList():
-    print ("getting next events")
+    ahlogger.log ("getting next events")
     response =  calendar_service.get_home_controller_events()
     return statement(response).simple_card('PCOFF', response)
 
@@ -112,6 +113,6 @@ if __name__ == '__main__':
     p1 = Process(target=launcher.start_process("192.168.0.32"), args=('bob',))
     p1.start()
 
-    print("STARTING ALEXA")
+    ahlogger.log("STARTING ALEXA")
 
 

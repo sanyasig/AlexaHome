@@ -2,6 +2,7 @@ import datetime
 import config_parser
 import json
 import requests
+import ahlogger
 
 
 def daily(topic=None, details=None):
@@ -54,5 +55,5 @@ def daily(topic=None, details=None):
                 'type': 'note'
             })
             response = requests.post(url="https://api.pushbullet.com/v2/pushes", data=body, headers=headers)
-            print (response)
-            print(each_message)
+            ahlogger.log (response)
+            ahlogger.log(each_message)

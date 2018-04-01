@@ -7,6 +7,7 @@ from oauth2client import client
 from oauth2client import tools
 from oauth2client.file import Storage
 from dateutil import parser
+import ahlogger
 
 
 try:
@@ -38,7 +39,7 @@ def get_credentials():
             credentials = tools.run_flow(flow, store, flags)
         else:  # Needed only for compatibility with Python 2.6
             credentials = tools.run(flow, store)
-        print('Storing credentials to ' + credential_path)
+        ahlogger.log('Storing credentials to ' + credential_path)
     return credentials
 
 

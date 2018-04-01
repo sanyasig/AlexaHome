@@ -1,6 +1,7 @@
 from services import *
 import os
 import json
+import ahlogger
 
 from services import tv, ifttt, firetv, dash, volumio, alerts
 
@@ -8,8 +9,8 @@ from services import tv, ifttt, firetv, dash, volumio, alerts
 def process_message(topic=None, message=None):
  # TODO: need to fix the dynamic loading of modules
     try:
-        print("topic: " + topic)
-        print("status " + message)
+        ahlogger.log("topic: " + topic)
+        ahlogger.log("status " + str(message))
 
         if("tv" in topic):
             module = tv
@@ -28,15 +29,15 @@ def process_message(topic=None, message=None):
         func(topic, message)
 
     except :
-        print("Cannto find service")
+        ahlogger.log("Cannto find service")
 
-    # print "mesage: " + message
+    # ahlogger.log "mesage: " + message
     # service = Utils.getService(topic)
     # execution = service.get_function(message)
     # execution = service.get_function(message)
     #
     # if(execution != None):
     #     result =  execution()
-    #     print result
+    #     ahlogger.log result
 
 
