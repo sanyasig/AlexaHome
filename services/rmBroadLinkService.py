@@ -1,7 +1,6 @@
 import broadlink
 import time
 
-import data_manager
 from services.parent_service import ParentService
 
 class RMBroadLInk(ParentService):
