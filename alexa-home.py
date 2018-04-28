@@ -110,7 +110,7 @@ if __name__ == '__main__':
    # p = Process(target=alexa_launch)
    # p.start()
 
-    p1 = Process(target=launcher.start_process("192.168.0.32"), args=('bob',))
+    p1 = Process(target=launcher.start_process("192.168.0.14"), args=('bob',))
     p1.start()
 
     ahlogger.log("STARTING ALEXA")
