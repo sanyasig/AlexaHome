@@ -4,19 +4,26 @@ import json
 
 
 def switch_off():
-    ahlogger.log("button has been pressed arial-button")
-    publish.single("home/dash", "arial-button", hostname="192.168.0.17")
+    print ("button has been pressed arial-button")
+    publish.single("home/dash", "arial-button", hostname="192.168.0.14")
 
 
 def switch_on():
-    ahlogger.log("button has been pressedi blank-button")
-    publish.single("home/dash", "blank-button", hostname="192.168.0.17")
+    print("button has been pressedi blank-button")
+    publish.single("home/dash", "blank-button", hostname="192.168.0.14")
 
+def andrex():
+    print("button has been pressed andrex")
+    publish.single("home/dash/andrex", "andrex-button", hostname="192.168.0.14")
+
+def on():
+    print("button has been pressed on")
+    publish.single("home/dash/on", "on-button", hostname="192.168.0.14")
 
 def fiesta_btn():
-    MQTT_MSG = json.dumps({"playlist": "morning", "ip": "192.168.0.24"});
-    ahlogger.log("Fiesta button has been pressedi blank-button")
-    publish.single("home/dash/fiesta", MQTT_MSG, hostname="192.168.0.17")
+    #MQTT_MSG = json.dumps({"playlist": "morning", "ip": "192.168.0.24"});
+    print("Fiesta button has been pressedi blank-button")
+    #publish.single("home/dash/fiesta", MQTT_MSG, hostname="192.168.0.17")
 
 
 netopt = {'client_listen_port': "68", 'server_listen_port': "67", 'listen_address': "0.0.0.0"}
@@ -50,7 +57,7 @@ class DashButtons():
         self.buttons[mac] = function
 
     def press(self, mac):
-        ahlogger.log()
+        print()
         if mac in self.buttons:
             self.buttons[mac]()
             return True
@@ -60,7 +67,8 @@ class DashButtons():
 dashbuttons = DashButtons()
 dashbuttons.register("ac:63:be:31:1e:2c", switch_off)
 dashbuttons.register("ac:63:be:9d:fb:a9", switch_on)
-dashbuttons.register("ac:63:be:75:ac:2c", fiesta_btn)
+dashbuttons.register("ac:63:be:38:38:0a", andrex)
+dashbuttons.register("44:65:0d:38:a8:ea", on)
 
 server = Server(netopt, dashbuttons)
 
