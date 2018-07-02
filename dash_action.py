@@ -14,20 +14,17 @@ def switch_on():
 
 def andrex():
     print("button has been pressed andrex")
-    publish.single("home/dash/andrex", "andrex-button", hostname="192.168.0.14")
+    publish_dash_message(btn_name='andex', bulb_name='Bed Room')
 
 def on():
     print("button has been pressed on")
-    publish.single("home/dash/on", "on-button", hostname="192.168.0.14")
+    publish_dash_message(btn_name='on', bulb_name='Kitchen')
 
-def fiesta_btn():
-    #MQTT_MSG = json.dumps({"playlist": "morning", "ip": "192.168.0.24"});
-    print("Fiesta button has been pressedi blank-button")
-    #publish.single("home/dash/fiesta", MQTT_MSG, hostname="192.168.0.17")
-
+def publish_dash_message(btn_name=None, bulb_name=None):
+    MQTT_MSG = json.dumps({"name": btn_name, "bulb_name": bulb_name,"service":"hue"})
+    publish.single("home/dash/button_press", MQTT_MSG, hostname="192.168.0.14")
 
 netopt = {'client_listen_port': "68", 'server_listen_port': "67", 'listen_address': "0.0.0.0"}
-
 
 class Server(DhcpServer):
     def __init__(self, options, dashbuttons):
@@ -65,11 +62,8 @@ class DashButtons():
 
 
 dashbuttons = DashButtons()
-dashbuttons.register("ac:63:be:31:1e:2c", switch_off)
-dashbuttons.register("ac:63:be:9d:fb:a9", switch_on)
 dashbuttons.register("ac:63:be:38:38:0a", andrex)
 dashbuttons.register("44:65:0d:38:a8:ea", on)
-
 server = Server(netopt, dashbuttons)
 
 while True:

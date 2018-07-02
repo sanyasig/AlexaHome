@@ -4,13 +4,15 @@ from services.lifx_service import LifxService
 from services.rmBroadLinkService import RMBroadLInk
 import platform
 import services.dash
+import json
 
 if __name__ == "__main__":
-   print(platform.python_version())
+   button_name = "andex"
+   MQTT_MSG = json.dumps({"name": button_name, "bulb_name": "bedroom"})
 
-   service =  HueService('192.168.0.10')
+   print(platform.python_version())
+   service = HueService('192.168.0.10')
    message = {}
    message['name'] = 'kitchen'
-
    value = service.get_function(message)
    value()

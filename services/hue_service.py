@@ -11,7 +11,7 @@ class HueService(ParentService):
     def get_function(self, message=None):
       api = self.bridge.get_api()
       for each_light in api['lights']:
-          if(api['lights'][each_light]['name'].lower() == message.get("name", "none").lower()):
+          if(api['lights'][each_light]['name'].lower() == message.get("bulb_name", "none").lower()):
               self.id = each_light
 
       return self.toggle
