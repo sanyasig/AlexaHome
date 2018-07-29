@@ -1,18 +1,24 @@
 from services.firestrick_service import FireStick
 import json
+from multiprocessing import Pool, Process
 
 def restart(topic=None, details=None):
     ip = str(topic).split("/")[-1]
     stick = FireStick(ip)
-    stick.restart()
+    p = Process(target=stick.restart(), args=())
+    p.start()
+    p.join()
 
 def kodi(topic=None, details=None):
     ip = str(topic).split("/")[-1]
     stick = FireStick(ip)
-    #stick.turn_off_youtube()
-    stick.turn_on_kodi()
+    p = Process(target=stick.turn_on_kodi(), args=())
+    p.start()
+    p.join()
 
 def youtube(topic=None, details=None):
     ip = str(topic).split("/")[-1]
     stick = FireStick(ip)
-    stick.turn_on_youtube()
+    p = Process(target=stick.turn_on_youtube(), args=())
+    p.start()
+    p.join()
