@@ -3,7 +3,7 @@ import os
 import json
 import ahlogger
 
-from services import tv, ifttt, firetv, dash, volumio, alerts
+from services import tv, ifttt, firetv, dash, volumio, alerts, audio
 
 
 def process_message(topic=None, message=None):
@@ -24,6 +24,8 @@ def process_message(topic=None, message=None):
             module = volumio
         if ("alerts" in topic):
             module = alerts
+        if ("audio" in topic):
+            module = audio
 
         func = getattr(module, topic.split("/")[2])
         func(topic, message)

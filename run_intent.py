@@ -9,9 +9,9 @@ import json
 
 if __name__ == "__main__":
 
-   services = MopidyService(ip="192.168.0.14")
+   services = RMBroadLInk(ip="192.168.0.17")
   # services.clear_tracklist()
-   services.add_playlist_tracklist(playlist_name="Morning")
+   services.turn_on_bt_audio()
 
 
 
