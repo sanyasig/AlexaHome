@@ -11,7 +11,7 @@ enum34==1.1.6
 Flask==0.12.2
 Flask-Ask==0.9.6
 google-api-python-client==1.6.5
-httplib2==0.10.3
+httplib2==0.19.0
 idna==2.6
 ipaddress==1.0.19
 itsdangerous==0.24
