@@ -35,7 +35,7 @@ pyOpenSSL==17.0.0
 python-dateutil==2.7.0
 PyYAML==3.12
 requests==2.13.0
-rsa==3.4.2
+rsa==4.7
 six==1.11.0
 tox==2.7.0
 transmissionrpc==0.11
